@@ -38,6 +38,43 @@ const reviewButton = document.getElementById("reviewButton");
 const reviewArea = document.getElementById("reviewArea");
 
 reviewButton.addEventListener("click", function () {
-    reviewArea.innerHTML = "";
-    reviewArea.innerHTML = "<p>Review button clicked..</p>";
+    const firstName = document.querySelector('input[name="firstName"]').value.trim();
+    const middleInitial = document.querySelector('input[name="middleInitial"]').value.trim();
+    const lastName = document.querySelector('input[name="lastName"]').value.trim();
+    const dob = document.querySelector('input[name="dob"]').value;
+    const gender = document.querySelector('select[name="gender"]').value;
+    const ssn = document.querySelector('input[name="ssn"]').value.trim();
+    const address1 = document.querySelector('input[name="address1"]').value.trim();
+    const address2 = document.querySelector('input[name="address2"]').value.trim();
+    const city = document.querySelector('input[name="city"]').value.trim();
+    const state = document.querySelector('select[name="state"]').value;
+    const zip = document.querySelector('input[name="zip"]').value.trim();
+    const email = document.querySelector('input[name="email"]').value.trim();
+    const userID = document.querySelector('input[name="userID"]').value.trim();
+    const passwordValue = document.querySelector('input[name="password"]').value;
+    const confirmPasswordValue = document.querySelector('input[name="confirmPassword"]').value;
+    const symptoms = document.querySelector('textarea[name="symptoms"]').value.trim();
+    const insurance = document.querySelector('input[name="insurance"]:checked')?.value || "";
+    const health = document.getElementById("healthSlider").value;
+reviewArea.innerHTML = `
+        <h3>Review Output (Raw Values)</h3>
+        <p>First Name: ${firstName}</p>
+        <p>Middle Initial: ${middleInitial}</p>
+        <p>Last Name: ${lastName}</p>
+        <p>Date of Birth: ${dob}</p>
+        <p>Gender: ${gender}</p>
+        <p>SSN: ${ssn}</p>
+        <p>Address 1: ${address1}</p>
+        <p>Address 2: ${address2}</p>
+        <p>City: ${city}</p>
+        <p>State: ${state}</p>
+        <p>ZIP: ${zip}</p>
+        <p>Email: ${email}</p>
+        <p>User ID: ${userID}</p>
+        <p>Password: ${passwordValue}</p>
+        <p>Confirm Password: ${confirmPasswordValue}</p>
+        <p>Symptoms: ${symptoms}</p>
+        <p>Insurance: ${insurance}</p>
+        <p>Health Rating: ${health}</p>
+    `;
 });
