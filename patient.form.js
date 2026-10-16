@@ -43,8 +43,102 @@ function validateFirstName(firstName) {
     const regex = /^[A-Za-z'\-]{2,30}$/;
     return regex.test(name);
 }
+// Middle Initial Validation
+function validateMiddleInitial(mi) {
+    if (mi.trim() === "") return true; // optional
+    const regex = /^[A-Za-z]$/;
+    return regex.test(mi);
+}
+// Last Name Validation
+function validateLastName(lastName) {
+    const name = lastName.trim();
+    const regex = /^[A-Za-z'\-]{2,30}$/;
+    return regex.test(name);
+}
+// Date of Birth Validation
+function validateDOB(dob) {
+    if (!dob) return false;
+    const today = new Date();
+    const birthDate = new Date(dob);
+    const ageLimit = new Date();
+    ageLimit.setFullYear(today.getFullYear() - 120);
+    if (birthDate > today) return false;
+    if (birthDate < ageLimit) return false;
+    return true;
+}
+// Gender Validation
+function validateGender(gender) {
+    return gender !== "";
+}
 
+// SSN Validation
+function validateSSN(ssn) {
+    const regex = /^\d{9}$/;
+    return regex.test(ssn.trim());
+}
 
+// Address1 Validation
+function validateAddress1(addr) {
+    const regex = /^.{2,30}$/;
+    return regex.test(addr.trim());
+}
+// Address2: optional, but Validation if used
+function validateAddress2(addr) {
+    if (addr.trim() === "") return true;
+    const regex = /^.{2,30}$/;
+    return regex.test(addr.trim());
+}
+// City Validation
+function validateCity(city) {
+    const regex = /^.{2,30}$/;
+    return regex.test(city.trim());
+}
+
+// State Validation
+function validateState(state) {
+    return state !== "";
+}
+// ZIP Code Validation
+function validateZip(zip) {
+    const regex = /^\d{5}(-\d{4})?$/;
+    return regex.test(zip.trim());
+}
+// Email Validation
+function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email.trim());
+}
+
+// UserID Validation
+function validateUserID(userID) {
+    const regex = /^[A-Za-z][A-Za-z0-9_-]{4,29}$/;
+    return regex.test(userID.trim());
+}
+// Password Validation
+function validatePassword(password) {
+    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#%^&*()\-_=+\\/><.,`~]).{8,30}$/;
+    return regex.test(password);
+}
+
+// Confirm Password Validation
+function validateConfirmPassword(password, confirmPassword) {
+    return password === confirmPassword;
+}
+// Symptoms Validation
+function validateSymptoms(symptoms) {
+    const regex = /^[^"]*$/;
+    return regex.test(symptoms);
+}
+// Insurance Validation
+function validateInsurance(insurance) {
+    return insurance === "yes" || insurance === "no";
+}
+
+// Slider Validation
+function validateSlider(value) {
+    const num = Number(value);
+    return num >= 1 && num <= 10;
+}
 
 
 //Review Button javascript
@@ -75,26 +169,31 @@ reviewButton.addEventListener("click", function () {
     const symptoms = document.querySelector('textarea[name="symptoms"]').value.trim();
     const insurance = document.querySelector('input[name="insurance"]:checked')?.value || "";
     const health = document.getElementById("healthSlider").value;
+    const zipShort = zip.includes("-") ? zip.split("-")[0] : zip;
+    const userIDlower = userID.toLowerCase();
+    const maskedPassword = "*".repeat(passwordValue.length);
+
 
 reviewArea.innerHTML = `
     <h3>Review Output</h3>
-   ${formatResult("First Name", firstName, validateFirstName(firstName))}
-    ${formatResult("Middle Initial", middleInitial, true)}
-    ${formatResult("Last Name", lastName, true)}
-    ${formatResult("Date of Birth", dob, true)}
-    ${formatResult("Gender", gender, true)}
-    ${formatResult("SSN", ssn, true)}
-    ${formatResult("Address 1", address1, true)}
-    ${formatResult("Address 2", address2, true)}
-    ${formatResult("City", city, true)}
-    ${formatResult("State", state, true)}
-    ${formatResult("ZIP", zip, true)}
-    ${formatResult("Email", email, true)}
-    ${formatResult("User ID", userID, true)}
-    ${formatResult("Password", passwordValue, true)}
-    ${formatResult("Confirm Password", confirmPasswordValue, true)}
-    ${formatResult("Symptoms", symptoms, true)}
-    ${formatResult("Insurance", insurance, true)}
-    ${formatResult("Health Rating", health, true)}
+  ${formatResult("First Name", firstName, validateFirstName(firstName))}
+ ${formatResult("Middle Initial", middleInitial, validateMiddleInitial(middleInitial))}
+ ${formatResult("Last Name", lastName, validateLastName(lastName))}
+ ${formatResult("Date of Birth", dob, validateDOB(dob))}
+ ${formatResult("Gender", gender, validateGender(gender))}
+ ${formatResult("SSN", ssn, validateSSN(ssn))}
+ ${formatResult("Address 1", address1, validateAddress1(address1))}
+ ${formatResult("Address 2", address2, validateAddress2(address2))}
+ ${formatResult("City", city, validateCity(city))}
+ ${formatResult("State", state, validateState(state))}
+ ${formatResult("ZIP", zipShort, validateZip(zip))}
+ ${formatResult("Email", email, validateEmail(email))}
+ ${formatResult("User ID", userIDlower, validateUserID(userID))}
+ ${formatResult("Password", maskedPassword, validatePassword(passwordValue))}
+ ${formatResult("Confirm Password", maskedPassword, validateConfirmPassword(passwordValue, confirmPasswordValue))}
+ ${formatResult("Symptoms", symptoms, validateSymptoms(symptoms))}
+ ${formatResult("Insurance", insurance, validateInsurance(insurance))}
+ ${formatResult("Health Rating", health, validateSlider(health))}
+
 `;
 });
