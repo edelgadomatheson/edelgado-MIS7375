@@ -33,9 +33,14 @@ if (slider && output) {
         output.textContent = this.value;
     };
 }
-//Review Button javascrip
+//Review Button javascript
 const reviewButton = document.getElementById("reviewButton");
 const reviewArea = document.getElementById("reviewArea");
+
+function formatResult(label, value, pass) {
+    const status = pass ? "PASS" : "FAIL";
+    return `<p><strong>${label}:</strong> ${value} — <span style="color:${pass ? 'green' : 'red'}">${status}</span></p>`;
+}
 
 reviewButton.addEventListener("click", function () {
     const firstName = document.querySelector('input[name="firstName"]').value.trim();
@@ -56,25 +61,26 @@ reviewButton.addEventListener("click", function () {
     const symptoms = document.querySelector('textarea[name="symptoms"]').value.trim();
     const insurance = document.querySelector('input[name="insurance"]:checked')?.value || "";
     const health = document.getElementById("healthSlider").value;
+
 reviewArea.innerHTML = `
-        <h3>Review Output (Raw Values)</h3>
-        <p>First Name: ${firstName}</p>
-        <p>Middle Initial: ${middleInitial}</p>
-        <p>Last Name: ${lastName}</p>
-        <p>Date of Birth: ${dob}</p>
-        <p>Gender: ${gender}</p>
-        <p>SSN: ${ssn}</p>
-        <p>Address 1: ${address1}</p>
-        <p>Address 2: ${address2}</p>
-        <p>City: ${city}</p>
-        <p>State: ${state}</p>
-        <p>ZIP: ${zip}</p>
-        <p>Email: ${email}</p>
-        <p>User ID: ${userID}</p>
-        <p>Password: ${passwordValue}</p>
-        <p>Confirm Password: ${confirmPasswordValue}</p>
-        <p>Symptoms: ${symptoms}</p>
-        <p>Insurance: ${insurance}</p>
-        <p>Health Rating: ${health}</p>
-    `;
+    <h3>Review Output</h3>
+    ${formatResult("First Name", firstName, true)}
+    ${formatResult("Middle Initial", middleInitial, true)}
+    ${formatResult("Last Name", lastName, true)}
+    ${formatResult("Date of Birth", dob, true)}
+    ${formatResult("Gender", gender, true)}
+    ${formatResult("SSN", ssn, true)}
+    ${formatResult("Address 1", address1, true)}
+    ${formatResult("Address 2", address2, true)}
+    ${formatResult("City", city, true)}
+    ${formatResult("State", state, true)}
+    ${formatResult("ZIP", zip, true)}
+    ${formatResult("Email", email, true)}
+    ${formatResult("User ID", userID, true)}
+    ${formatResult("Password", passwordValue, true)}
+    ${formatResult("Confirm Password", confirmPasswordValue, true)}
+    ${formatResult("Symptoms", symptoms, true)}
+    ${formatResult("Insurance", insurance, true)}
+    ${formatResult("Health Rating", health, true)}
+`;
 });
