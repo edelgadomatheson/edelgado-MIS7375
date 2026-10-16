@@ -23,3 +23,13 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     alert("Form submitted successfully!");
 });
+
+const slider = document.getElementById("healthSlider");
+const output = document.getElementById("healthValue");
+
+if (slider && output) {
+    output.textContent = slider.value;
+    slider.oninput = function() {
+        output.textContent = this.value;
+    };
+}
