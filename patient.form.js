@@ -33,6 +33,20 @@ if (slider && output) {
         output.textContent = this.value;
     };
 }
+
+//First Name validation
+function validateFirstName(firstName) {
+    const name = firstName.trim();
+    if (name.length < 2 || name.length > 30) {
+        return false;
+    }
+    const regex = /^[A-Za-z'\-]{2,30}$/;
+    return regex.test(name);
+}
+
+
+
+
 //Review Button javascript
 const reviewButton = document.getElementById("reviewButton");
 const reviewArea = document.getElementById("reviewArea");
@@ -64,7 +78,7 @@ reviewButton.addEventListener("click", function () {
 
 reviewArea.innerHTML = `
     <h3>Review Output</h3>
-    ${formatResult("First Name", firstName, true)}
+   ${formatResult("First Name", firstName, validateFirstName(firstName))}
     ${formatResult("Middle Initial", middleInitial, true)}
     ${formatResult("Last Name", lastName, true)}
     ${formatResult("Date of Birth", dob, true)}
