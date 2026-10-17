@@ -68,8 +68,9 @@ function validateDOB(dob) {
 }
 // Gender Validation
 function validateGender(gender) {
-    return gender !== "";
+    return gender !== "" && gender !== "--Select Gender--";
 }
+
 
 // SSN Validation
 function validateSSN(ssn) {
@@ -122,8 +123,12 @@ function validatePassword(password) {
 
 // Confirm Password Validation
 function validateConfirmPassword(password, confirmPassword) {
+    if (password.trim() === "" || confirmPassword.trim() === "") {
+        return false;
+    }
     return password === confirmPassword;
 }
+
 // Symptoms Validation
 function validateSymptoms(symptoms) {
     const regex = /^[^"]*$/;
