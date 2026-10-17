@@ -2,8 +2,8 @@
 
 //Program name: patient.form.js
 //Author: Enrique Delgado
-//Date Created: 9/27/26
-//Version: 1.0
+//Date Created: 10/17/26
+//Version: 1.1
 //Description: Patient Registration Form for whenever a patient visits the clinic.
 
 //validate the passwords are the same. 
@@ -204,7 +204,7 @@ reviewArea.innerHTML = `
  ${formatResult("Last Name", lastName, validateLastName(lastName))}
  ${formatResult("Date of Birth", dob, validateDOB(dob))}
  ${formatResult("Gender", gender, validateGender(gender))}
- ${formatResult("SSN", ssn, validateSSN(ssn))}
+ ${formatResult("SSN", ssnMasked, validateSSN(ssn))}
  ${formatResult("Address 1", address1, validateAddress1(address1))}
  ${formatResult("Address 2", address2, validateAddress2(address2))}
  ${formatResult("City", city, validateCity(city))}
