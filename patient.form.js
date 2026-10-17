@@ -162,6 +162,7 @@ reviewButton.addEventListener("click", function () {
     const dob = document.querySelector('input[name="dob"]').value;
     const gender = document.querySelector('select[name="gender"]').value;
     const ssn = document.querySelector('input[name="ssn"]').value.trim();
+
     const address1 = document.querySelector('input[name="address1"]').value.trim();
     const address2 = document.querySelector('input[name="address2"]').value.trim();
     const city = document.querySelector('input[name="city"]').value.trim();
@@ -177,6 +178,8 @@ reviewButton.addEventListener("click", function () {
     const zipShort = zip.includes("-") ? zip.split("-")[0] : zip;
     const userIDlower = userID.toLowerCase();
     const maskedPassword = "*".repeat(passwordValue.length);
+    const ssnMasked = "*".repeat(ssn.length);
+
 
 
 reviewArea.innerHTML = `
