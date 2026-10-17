@@ -1,8 +1,8 @@
  <!--
 Program name: patient.form.html
 Author: Enrique Delgado
-Date Created: 9/27/26
-Version: 1.0
+Date Created: 10/17/26
+Version: 1.1
 Description: Patient Registration Form for whenever a patient visits the clinic.
 -->
 <!doctype html>
@@ -58,7 +58,7 @@ Description: Patient Registration Form for whenever a patient visits the clinic.
         <tr>
             <td>Last Name:</td>
             <td><input type="text" name="lastName" maxlength="30" required
-                       title="Enter your Last Name (Letters, apostrophes, numbers 2-5, and dashes only)"></td>
+                       title="Enter your Last Name (Letters, apostrophes, and dashes only)"></td>
         </tr>
         <tr>
             <td>Date of Birth:</td>
@@ -70,7 +70,7 @@ Description: Patient Registration Form for whenever a patient visits the clinic.
             <td>Gender:</td>
             <td><select name="gender" required
                         title="Select your gender">
-                <option value'"">--Select Gender--</option>
+                <option value="">--Select Gender--</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
@@ -92,7 +92,7 @@ Description: Patient Registration Form for whenever a patient visits the clinic.
         <tr>
             <td>Address Line 2:</td>
             <td><input type="text" name="address2" maxlength="30"
-                       title="Optional: Apt, suite, or unit number (2 to 30 characters)
+                       title="Optional: Apt, suite, or unit number (2 to 30 characters)"
                        pattern=".{2,30}"></td>
         </tr>
          <tr>
