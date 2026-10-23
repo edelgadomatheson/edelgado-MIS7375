@@ -131,10 +131,21 @@ function validateUserID(userID) {
     return regex.test(userID.trim());
 }
 // Password Validation
-function validatePassword(password) {
+function validatePassword(password, userID, firstName, lastName) {
     const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#%^&*()\-_=+\\/><.,`~]).{8,30}$/;
-    return regex.test(password);
+    if (!regex.test(password)) return false;
+    const pw = password.toLowerCase();
+    const uid = userID.toLowerCase();
+    const fn = firstName.toLowerCase();
+    const ln = lastName.toLowerCase();
+    if (pw === uid) return false;
+    if (pw.includes(uid)) return false;
+    if (pw.includes(fn)) return false;
+    if (pw.includes(ln)) return false;
+
+    return true;
 }
+
 
 // Confirm Password Validation
 function validateConfirmPassword(password, confirmPassword) {
@@ -212,7 +223,7 @@ reviewArea.innerHTML = `
  ${formatResult("ZIP", zipShort, validateZip(zip))}
  ${formatResult("Email", email, validateEmail(email))}
  ${formatResult("User ID", userIDlower, validateUserID(userID))}
- ${formatResult("Password", maskedPassword, validatePassword(passwordValue))}
+ ${formatResult("Password", maskedPassword, validatePassword(passwordValue, userID, firstName, lastName))}
  ${formatResult("Confirm Password", maskedPassword, validateConfirmPassword(passwordValue, confirmPasswordValue))}
  ${formatResult("Symptoms", symptoms, validateSymptoms(symptoms))}
  ${formatResult("Insurance", insurance, validateInsurance(insurance))}
