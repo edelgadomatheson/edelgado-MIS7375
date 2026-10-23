@@ -29,6 +29,185 @@ firstNameInput.addEventListener('input', () => {
     }
 });
 
+const miField = document.querySelector('input[name="middleInitial"]');
+miField.addEventListener('input', () => {
+    const error = document.getElementById("middleInitialError");
+    if (!validateMiddleInitial(miField.value.trim())) {
+        error.textContent = "Middle initial must be 1 letter.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const lastNameField = document.querySelector('input[name="lastName"]');
+lastNameField.addEventListener('input', () => {
+    const error = document.getElementById("lastNameError");
+    if (!validateLastName(lastNameField.value.trim())) {
+        error.textContent = "Last name must be 2–30 letters.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const dobField2 = document.querySelector('input[name="dob"]');
+dobField2.addEventListener('blur', () => {
+    const error = document.getElementById("dobError");
+    if (!validateDOB(dobField2.value)) {
+        error.textContent = "Invalid date of birth.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const genderField = document.querySelector('select[name="gender"]');
+genderField.addEventListener('change', () => {
+    const error = document.getElementById("genderError");
+    if (!validateGender(genderField.value)) {
+        error.textContent = "Please select a gender.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const ssnField = document.querySelector('input[name="ssn"]');
+ssnField.addEventListener('input', () => {
+    const error = document.getElementById("ssnError");
+    if (!validateSSN(ssnField.value)) {
+        error.textContent = "SSN must be 9 digits.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const address1Field = document.querySelector('input[name="address1"]');
+address1Field.addEventListener('input', () => {
+    const error = document.getElementById("address1Error");
+    if (!validateAddress1(address1Field.value)) {
+        error.textContent = "Address must be 2–30 characters.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const address2Field = document.querySelector('input[name="address2"]');
+address2Field.addEventListener('input', () => {
+    const error = document.getElementById("address2Error");
+    if (!validateAddress2(address2Field.value)) {
+        error.textContent = "Address must be 2–30 characters.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const cityField = document.querySelector('input[name="city"]');
+cityField.addEventListener('input', () => {
+    const error = document.getElementById("cityError");
+    if (!validateCity(cityField.value)) {
+        error.textContent = "City must be 2–30 characters.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const stateField = document.querySelector('select[name="state"]');
+stateField.addEventListener('change', () => {
+    const error = document.getElementById("stateError");
+    if (!validateState(stateField.value)) {
+        error.textContent = "Please select a state.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const zipField = document.querySelector('input[name="zip"]');
+zipField.addEventListener('input', () => {
+    const error = document.getElementById("zipError");
+    if (!validateZip(zipField.value)) {
+        error.textContent = "ZIP must be 5 digits.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const emailField = document.querySelector('input[name="email"]');
+emailField.addEventListener('input', () => {
+    const error = document.getElementById("emailError");
+    if (!validateEmail(emailField.value)) {
+        error.textContent = "Invalid email format.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const userIDField = document.querySelector('input[name="userID"]');
+userIDField.addEventListener('input', () => {
+    const error = document.getElementById("userIDError");
+    if (!validateUserID(userIDField.value)) {
+        error.textContent = "User ID must start with a letter and be 5–30 characters.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const passwordField = document.querySelector('input[name="password"]');
+passwordField.addEventListener('input', () => {
+    const error = document.getElementById("passwordError");
+    const userID = userIDField.value.trim();
+    const firstName = firstNameField.value.trim();
+    const lastName = lastNameField.value.trim();
+
+    if (!validatePassword(passwordField.value, userID, firstName, lastName)) {
+        error.textContent = "Password invalid.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const confirmPasswordField = document.querySelector('input[name="confirmPassword"]');
+confirmPasswordField.addEventListener('input', () => {
+    const error = document.getElementById("confirmPasswordError");
+    if (!validateConfirmPassword(passwordField.value, confirmPasswordField.value)) {
+        error.textContent = "Passwords do not match.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const symptomsField = document.querySelector('textarea[name="symptoms"]');
+symptomsField.addEventListener('input', () => {
+    const error = document.getElementById("symptomsError");
+    if (!validateSymptoms(symptomsField.value)) {
+        error.textContent = "Quotes are not allowed.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+const insuranceFields = document.querySelectorAll('input[name="insurance"]');
+insuranceFields.forEach(radio => {
+    radio.addEventListener('change', () => {
+        const error = document.getElementById("insuranceError");
+        const value = document.querySelector('input[name="insurance"]:checked')?.value || "";
+        if (!validateInsurance(value)) {
+            error.textContent = "Please select Yes or No.";
+        } else {
+            error.textContent = "";
+        }
+    });
+});
+
+const sliderField = document.getElementById("healthSlider");
+sliderField.addEventListener('change', () => {
+    const error = document.getElementById("healthError");
+    if (!validateSlider(sliderField.value)) {
+        error.textContent = "Health rating must be 1–10.";
+    } else {
+        error.textContent = "";
+    }
+});
+
+
+
 
 // Confirm Password: show if error occurs
 confirmPassword.addEventListener('blur', () => {
