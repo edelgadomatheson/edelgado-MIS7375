@@ -103,11 +103,12 @@ const cityField = document.querySelector('input[name="city"]');
 cityField.addEventListener('input', () => {
     const error = document.getElementById("cityError");
     if (!validateCity(cityField.value)) {
-        error.textContent = "City must be 2–30 characters.";
+        error.textContent = "City must be 2–30 letters.";
     } else {
         error.textContent = "";
     }
 });
+
 
 const stateField = document.querySelector('select[name="state"]');
 stateField.addEventListener('change', () => {
@@ -152,16 +153,47 @@ userIDField.addEventListener('input', () => {
 const passwordField = document.querySelector('input[name="password"]');
 passwordField.addEventListener('input', () => {
     const error = document.getElementById("passwordError");
+    const value = passwordField.value;
     const userID = userIDField.value.trim();
     const firstName = firstNameField.value.trim();
     const lastName = lastNameField.value.trim();
 
-    if (!validatePassword(passwordField.value, userID, firstName, lastName)) {
-        error.textContent = "Password invalid.";
+    let messages = [];
+
+    if (value.length < 8 || value.length > 30) {
+        messages.push("Must be 8–30 characters.");
+    }
+    if (!/[A-Z]/.test(value)) {
+        messages.push("Must contain an uppercase letter.");
+    }
+    if (!/[a-z]/.test(value)) {
+        messages.push("Must contain a lowercase letter.");
+    }
+    if (!/\d/.test(value)) {
+        messages.push("Must contain a number.");
+    }
+    if (!/[!@#%^&*()\-_=+\\/><.,`~]/.test(value)) {
+        messages.push("Must contain a special character.");
+    }
+    const pw = value.toLowerCase();
+    if (pw.includes(userID.toLowerCase())) {
+        messages.push("Cannot contain your User ID.");
+    }
+    if (pw.includes(firstName.toLowerCase())) {
+        messages.push("Cannot contain your first name.");
+    }
+    if (pw.includes(lastName.toLowerCase())) {
+        messages.push("Cannot contain your last name.");
+    }
+
+    // Display messages
+    if (messages.length > 0) {
+        error.textContent = messages.join(" ");
     } else {
         error.textContent = "";
     }
 });
+
 
 const confirmPasswordField = document.querySelector('input[name="confirmPassword"]');
 confirmPasswordField.addEventListener('input', () => {
@@ -355,11 +387,12 @@ function validateAddress2(addr) {
     const regex = /^.{2,30}$/;
     return regex.test(addr.trim());
 }
-// City Validation
+//City Validation
 function validateCity(city) {
-    const regex = /^.{2,30}$/;
+    const regex = /^[A-Za-z'\- ]{2,30}$/;
     return regex.test(city.trim());
 }
+
 
 // State Validation
 function validateState(state) {
