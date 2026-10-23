@@ -48,26 +48,27 @@ Description: Patient Registration Form for whenever a patient visits the clinic.
         <tr>
             <td>First Name:</td>
             <td><input type="text" name="firstName" maxlength="30" required
-                       title="Enter your First Name (Letters, Apostrophes, and dashes only)"></td>
-            <td>
-               <input type="text" name="firstName" maxlength="30" required>  <span class="error" id="firstNameError"></span>
-            </td>
-
+                       title="Enter your First Name (Letters, Apostrophes, and dashes only)"><span class="error" id="firstNameError"></span></td>
+                 
         </tr> 
         <tr>
             <td>Middle Initial:</td>
             <td><input type="text" name="middleInitial" maxlength="1"
-                       title= "Enter your middle initial (letters only)"></td>
+                       title= "Enter your middle initial (letters only)"><span class="error" id="middleInitialError"></span></td>
+                       
+         
         </tr>
         <tr>
             <td>Last Name:</td>
             <td><input type="text" name="lastName" maxlength="30" required
-                       title="Enter your Last Name (Letters, apostrophes, and dashes only)"></td>
+                       title="Enter your Last Name (Letters, apostrophes, and dashes only)">  <span class="error" id="lastNameError"></span></td>
+               
         </tr>
         <tr>
             <td>Date of Birth:</td>
             <td><input type="date" name="dob" required
-                       title= "Please enter your Date of Birth (MM/DD/YYYY); Cannot be in the future or more than 120 years ago." ></td>
+                       title= "Please enter your Date of Birth (MM/DD/YYYY); Cannot be in the future or more than 120 years ago." ><span class="error" id="dobError"></span></td>
+                       
      
         </tr>
         <tr>
@@ -79,31 +80,36 @@ Description: Patient Registration Form for whenever a patient visits the clinic.
                 <option value="female">Female</option>
                 <option value="other">Other</option>
                 </select>
-            </td>
+            <span class="error" id="genderError"></span></td>
+              
         </tr>
         <tr>
             <td>Social Security Number:</td>
             <td><input type="password" name="ssn" maxlength="11" required
                        title="Enter your 9 digit SSN (numbers only)" 
-                       pattern="\d{9}"></td>
+                       pattern="\d{9}"><span class="error" id="ssnError"></span></td>
+                  
         </tr>
         <tr>
             <td>Address Line 1:</td>
             <td><input type="text" name="address1" maxlength="30" required
                        title="Enter your street address (2 to 30 characters)"
-                       pattern=".{2,30}"></td>
+                       pattern=".{2,30}"><span class="error" id="address1Error"></span></td>
+                
         </tr>
         <tr>
             <td>Address Line 2:</td>
             <td><input type="text" name="address2" maxlength="30"
                        title="Optional: Apt, suite, or unit number (2 to 30 characters)"
-                       pattern=".{2,30}"></td>
+                       pattern=".{2,30}"> <span class="error" id="address2Error"></span</td>
+                
         </tr>
          <tr>
             <td>City:</td>
             <td><input type="text" name="city" maxlength="30" required
                        title="Enter your city (2-30 characters)"
-                       pattern=".{2,30}"></td>
+                       pattern=".{2,30}"><span class="error" id="cityError"></span></td>
+                
         </tr>
          <tr>
             <td>State:</td>
@@ -160,44 +166,51 @@ Description: Patient Registration Form for whenever a patient visits the clinic.
                 <option value="WV">WV</option>
                 <option value="WI">WI</option>
                 <option value="WY">WY</option>
-</select></td>
+</select><span class="error" id="stateError"></span></td>
+          
         </tr>
         <tr>
             <td>Zip Code:</td>
             <td><input type="text" name="zip" maxlength="10" required
                        title="Enter your ZIP code (5 digits or ZIP+4 format)"
-                       pattern="\d{5}(-\d{4})?"></td>
+                       pattern="\d{5}(-\d{4})?"><span class="error" id="zipError"></span></td>
+                 
         </tr>
         <tr>
             <td>Email</td>
             <td><input type="email" name="email" maxlength="50" required
                        title="Enter your Email Address (example: youremail@domain.com)"
-                       pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"></td>
+                       pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"><span class="error" id="emailError"></span</td>
+                >
+                
         </tr>
         <tr>
             <td>User ID:</td>
             <td><input type="text" name="userID" maxlength="30" required
                        title="5-30 characters. Must start with a letter. Letters/numbers/_/- only. No Spaces"
-                       pattern="^[A-Za-z][A-Za-z0-9_-]{4,29}$"></td>
+                       pattern="^[A-Za-z][A-Za-z0-9_-]{4,29}$"><span class="error" id="userIDError"></td>
+               </span>
         </tr>
         <tr>
             <td>Password:</td>
             <td><input type="password" name="password" maxlength="30" required
                        title="8-30 characters, must include one uppercase, one lowercase, one number and one special character"
-                       pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#%^&*()\-_=+\\/><.,`~]).{8,30}"></td>
+                       pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#%^&*()\-_=+\\/><.,`~]).{8,30}"><span class="error" id="passwordError"></span></td>
+                  
          <div id="confirmPasswordWarning" style="color:red; font-size:12px;"></div>
 
         </tr>
         <tr>
             <td>Confirm Password:</td>
             <td><input type="password" name="confirmPassword" maxlength="30" required
-                       title="Re-enter your password to confirm"></td>
+                       title="Re-enter your password to confirm"> <span class="error" id="confirmPasswordError"></span></td>
+             
         </tr>
          <tr>
             <td>Symptoms:</td>
             <td><textarea name="symptoms" rows="3" cols="50"
                           title="Describe any symptoms. (No double quotes)"
-                          pattern='[^"]*'></textarea></td>
+                          pattern='[^"]*'></textarea><span class="error" id="symptomsError"></span></td>
         </tr>
         <tr>
             <td>Medical History:</td>
@@ -216,14 +229,14 @@ Description: Patient Registration Form for whenever a patient visits the clinic.
                        title="Rate your current Health from 1(worst) to 10(best)">
             <span id="healthValue" title="Your selected health rating">5</span>
          
-            </td>
+            <span class="error" id="healthError"></span></td>
         </tr>
         <tr>
             <td>Do you have insurance?</td>
             <td title="Select whether or not you have insurance.">
                 <input type="radio" name="insurance" value="yes">Yes
                 <input type="radio" name="insurance" value="no">No
-            </td>
+            <span class="error" id="insuranceError"></span></td>
         </tr>
         <tr>
             <td colspan="2" class="button-row">
