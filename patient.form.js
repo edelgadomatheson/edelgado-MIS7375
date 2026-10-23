@@ -35,17 +35,21 @@ confirmPassword.addEventListener('blur', () => {
     const warning = document.getElementById("confirmPasswordWarning");
     const pw = password.value.trim();
     const cpw = confirmPassword.value.trim();
- if (pw === "" || cpw === "") {
+if (pw === "" || cpw === "") {
     warning.textContent = "Password fields cannot be blank.";
     confirmPassword.style.border = "4px solid red";
     return;
+}
+
 if (pw !== cpw) {
     warning.textContent = "Passwords do not match.";
     confirmPassword.style.border = "4px solid red";
     return;
 }
+
 warning.textContent = "";
 confirmPassword.style.border = "4px solid green";
+
 
 });
 
