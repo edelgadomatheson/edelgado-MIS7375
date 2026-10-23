@@ -17,6 +17,19 @@ confirmPassword.addEventListener('input',() =>{
     }
     });
 
+const firstNameInput = document.querySelector('input[name="firstName"]');
+firstNameInput.addEventListener('input', () => {
+    const value = firstNameInput.value.trim();
+    const error = document.getElementById("firstNameError");
+    if (!validateFirstName(value)) {
+        error.textContent = "First name must be 2–30 letters.";
+        error.style.color = "red";
+    } else {
+        error.textContent = "";
+    }
+});
+
+
 // Confirm Password: show if error occurs
 confirmPassword.addEventListener('blur', () => {
     const warning = document.getElementById("confirmPasswordWarning");
