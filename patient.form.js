@@ -67,9 +67,44 @@ if (dobField) {
  const form = document.querySelector('form');
 //Submit the form js
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
+    let errors = [];
+
+    const firstName = document.querySelector('input[name="firstName"]').value.trim();
+    if (!validateFirstName(firstName)) {
+        errors.push("First Name is invalid.");
+        document.getElementById("firstNameError").textContent = "Invalid first name.";
+    }
+
+    const lastName = document.querySelector('input[name="lastName"]').value.trim();
+    if (!validateLastName(lastName)) {
+        errors.push("Last Name is invalid.");
+        document.getElementById("lastNameError").textContent = "Invalid last name.";
+    }
+
+    const passwordValue = document.querySelector('input[name="password"]').value;
+    const userID = document.querySelector('input[name="userID"]').value.trim();
+    const firstNameValue = document.querySelector('input[name="firstName"]').value.trim();
+    const lastNameValue = document.querySelector('input[name="lastName"]').value.trim();
+
+    if (!validatePassword(passwordValue, userID, firstNameValue, lastNameValue)) {
+        errors.push("Password is invalid.");
+        document.getElementById("passwordError").textContent = "Invalid password.";
+    }
+
+    const confirmPasswordValue = document.querySelector('input[name="confirmPassword"]').value;
+    if (!validateConfirmPassword(passwordValue, confirmPasswordValue)) {
+        errors.push("Passwords do not match.");
+        document.getElementById("confirmPasswordError").textContent = "Passwords do not match.";
+    }
+    if (errors.length > 0) {
+        e.preventDefault();
+        alert("Please fix the errors before submitting.");
+        return;
+    }
+
     alert("Form submitted successfully!");
 });
+
 //js for the slider to adjust its value live
 const slider = document.getElementById("healthSlider");
 const output = document.getElementById("healthValue");
